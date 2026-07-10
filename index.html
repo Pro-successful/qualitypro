@@ -39,16 +39,16 @@
 
         .loading-container {
             position: relative;
-            width: 85%;
-            max-width: 550px;
-            height: 220px;
+            width: 90%;
+            max-width: 650px;
+            height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
-        /* Premium grounded track line with depth */
+        /* Grounded track line that dynamically scales thin down to a horizon line in Phase 2 */
         .progress-track-bg {
             width: 100%;
             height: 14px;
@@ -56,18 +56,30 @@
             border-radius: 100px;
             position: relative;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 1px 0px rgba(255,255,255,0.8);
+            transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
         }
 
-        /* Animated Avatar Wrapper with custom organic fluid inertia curves */
+        .loading-container.phase-two .progress-track-bg {
+            height: 2px;
+            background-color: #cccccc;
+            box-shadow: none;
+            width: 100%;
+        }
+
+        /* --- PHASE 1: GLIDING SLIDER --- */
         .avatar-slider {
             position: absolute;
-            bottom: 7px;
+            bottom: 200px; 
             left: 0%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: moveAvatarPremium 3.4s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+            animation: moveAvatarPremium 3.2s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+        }
+
+        .loading-container.phase-two .avatar-slider {
+            display: none;
         }
 
         /* Studio-quality Glassmorphism Card Element */
@@ -79,7 +91,7 @@
             -webkit-backdrop-filter: blur(16px) saturate(120%);
             border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 12px;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0,0,0,0.02);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
             padding: 7px;
             display: flex;
             flex-direction: column;
@@ -87,75 +99,9 @@
             position: relative;
             margin-bottom: -2px;
             transform-origin: bottom center;
-            animation: cardScalePremium 3.4s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+            animation: cardScalePremium 3.2s cubic-bezier(0.76, 0, 0.24, 1) forwards;
         }
 
-        /* Character Profile Vector Engine */
-        .avatar-img-box {
-            width: 100%;
-            height: 68px;
-            background: linear-gradient(135deg, #fff2ed 0%, #ffe5dc 100%);
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-        
-        .char-hair {
-            position: absolute;
-            top: 14px;
-            width: 44px;
-            height: 44px;
-            background-color: #653A2A;
-            border-radius: 50% 50% 0 0;
-        }
-        
-        .char-face {
-            width: 34px;
-            height: 38px;
-            background-color: #FFD1C1;
-            border-radius: 50%;
-            position: relative;
-            z-index: 2;
-            margin-bottom: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .char-glasses {
-            width: 28px;
-            height: 14px;
-            border: 2px solid #E5A93C;
-            border-top: none;
-            position: absolute;
-            top: 12px;
-            border-radius: 0 0 4px 4px;
-        }
-
-        .char-body {
-            width: 38px;
-            height: 18px;
-            background-color: #9CDCE4;
-            border-radius: 14px 12px 0 0;
-            z-index: 1;
-            position: absolute;
-            bottom: 0;
-        }
-
-        .card-ui-elements {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 8px;
-            font-weight: 600;
-            color: #E25C5C;
-            padding: 0 3px;
-        }
-
-        /* Liquid Anchor Node Slider Base */
         .tracking-dot {
             width: 26px;
             height: 26px;
@@ -167,7 +113,168 @@
             z-index: -1;
         }
 
-        /* High-fashion Serif Brand Alignment */
+        /* --- PHASE 2: THE FINALE CELEBRATION GROUP --- */
+        .celebration-group {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-container.phase-two .celebration-group {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Horizon lineup container for the avatars */
+        .character-horizon {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            margin-top: 40px;
+        }
+
+        /* Main Center Frame */
+        .center-frame-wrapper {
+            position: absolute;
+            left: 50%;
+            bottom: 66px;
+            transform: translateX(-50%) scale(0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
+        }
+        .loading-container.phase-two .center-frame-wrapper {
+            opacity: 1;
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        /* Dynamic Heart Floating Badge */
+        .heart-badge {
+            background-color: #EF5A6F;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 6px 14px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 12px rgba(239, 90, 111, 0.3);
+        }
+        .heart-badge::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px 6px 0;
+            border-style: solid;
+            border-color: #EF5A6F transparent;
+            display: block;
+            width: 0;
+        }
+
+        /* Core Vector Character Blocks */
+        .avatar-img-box {
+            width: 100%;
+            height: 68px;
+            background: linear-gradient(135deg, #fff2ed 0%, #ffe5dc 100%);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        .char-hair { position: absolute; top: 14px; width: 44px; height: 44px; background-color: #653A2A; border-radius: 50% 50% 0 0; }
+        .char-face { width: 34px; height: 38px; background-color: #FFD1C1; border-radius: 50%; position: relative; z-index: 2; margin-bottom: 4px; display: flex; justify-content: center; align-items: center; }
+        .char-glasses { width: 28px; height: 14px; border: 2px solid #E5A93C; border-top: none; position: absolute; top: 12px; border-radius: 0 0 4px 4px; }
+        .char-body { width: 38px; height: 18px; background-color: #9CDCE4; border-radius: 14px 12px 0 0; z-index: 1; position: absolute; bottom: 0; }
+        .card-ui-elements { display: flex; justify-content: space-between; align-items: center; font-size: 8px; font-weight: 600; color: #E25C5C; padding: 0 3px; }
+
+        /* Surrounding side characters emerging from horizon line */
+        .side-character {
+            position: absolute;
+            bottom: 66px;
+            width: 32px;
+            height: 55px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .loading-container.phase-two .side-character {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Individual character shapes mapping precisely to your illustration lineup */
+        .char-left-1 { left: 15%; background: linear-gradient(#E8D5C4, #8FA0BF); transition-delay: 0.3s; }
+        .char-left-2 { left: 30%; background: linear-gradient(#F7C59F, #5D6D7E); transition-delay: 0.4s; width: 36px; height: 62px;}
+        .char-right-1 { right: 32%; background: linear-gradient(#E2EFDA, #A2D1A9); transition-delay: 0.5s; height: 48px; }
+        .char-right-2 { right: 18%; background: linear-gradient(#FADBD8, #C39BD3); transition-delay: 0.6s; width: 34px; height: 58px; }
+
+        /* Minimal profile elements inside capsule bodies */
+        .mini-face { width: 20px; height: 20px; background-color: #FEE3D2; border-radius: 50%; margin-bottom: 24px; position: relative; }
+        .mini-face::after { content: '..'; font-size: 10px; font-weight: bold; position: absolute; top: -2px; left: 6px; letter-spacing: 1px; color: #333; }
+        .char-left-1 .mini-face { margin-bottom: 26px; }
+        .char-left-2 .mini-face::before { content: ''; position: absolute; width: 22px; height: 22px; border: 1.5px solid #D35400; border-radius: 50%; top: -1px; left: -1px; }
+
+        /* Dynamic Typography Layout Elements */
+        .appreciated-text {
+            font-family: "Didot", "Bodoni MT", "Cinzel", Georgia, serif;
+            font-size: 1.25rem;
+            color: #111111;
+            letter-spacing: 0.08em;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1.4;
+            margin-top: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease 0.7s;
+        }
+        .loading-container.phase-two .appreciated-text { opacity: 1; transform: translateY(0); }
+
+        .thankyou-text {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.75rem;
+            font-weight: 500;
+            color: #111111;
+            margin-top: 45px;
+            position: relative;
+            opacity: 0;
+            transition: all 0.5s ease 1s;
+        }
+        .loading-container.phase-two .thankyou-text { opacity: 1; }
+        .thankyou-text::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 4px;
+            background-color: #FFE500; /* Signature underline accent */
+        }
+
+        /* INITIAL BRAND TEXT PHASE 1 */
         .brand-footer-text {
             margin-top: 2rem;
             font-family: "Didot", "Bodoni MT", "Cinzel", Georgia, serif;
@@ -177,28 +284,18 @@
             letter-spacing: 0.08em;
             text-align: center;
             text-transform: uppercase;
+            transition: opacity 0.3s ease;
         }
-        
-        .brand-footer-text span {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #777777;
-            margin-left: 0.6rem;
-            letter-spacing: 0.15em;
-            vertical-align: middle;
-        }
+        .brand-footer-text span { font-family: -apple-system, sans-serif; font-size: 0.75rem; font-weight: 700; color: #777777; margin-left: 0.6rem; letter-spacing: 0.15em; vertical-align: middle; }
+        .loading-container.phase-two .brand-footer-text { opacity: 0; }
 
-        /* PREMIUM LUXURY EASING TIMELINES */
+        /* MOVEMENT TIMELINES */
         @keyframes moveAvatarPremium {
             0% { left: 12%; }
-            50% { left: 78%; }
-            100% { left: 82%; }
+            100% { left: 50%; }
         }
-
         @keyframes cardScalePremium {
             0% { transform: scale(0.6) rotate(-5deg); }
-            50% { transform: scale(1.15) rotate(3deg); }
             100% { transform: scale(1) rotate(0deg); }
         }
 
@@ -211,196 +308,44 @@
             transform: translateY(30px);
             transition: opacity 1.2s cubic-bezier(0.215, 0.610, 0.355, 1), transform 1.2s cubic-bezier(0.215, 0.610, 0.355, 1);
         }
-
-        .container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .header {
-            border-bottom: 1px solid #111111;
-            padding-bottom: 2.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            margin-bottom: 1.5rem;
-            color: #777777;
-            text-transform: uppercase;
-        }
-
-        .main-title {
-            font-size: 4rem;
-            font-weight: 400;
-            line-height: 1.05;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.04em;
-        }
-
-        .subtitle {
-            font-size: 1.15rem;
-            color: #555555;
-            max-width: 650px;
-            font-weight: 400;
-        }
-
-        .search-section {
-            margin-bottom: 4rem;
-        }
-
-        .input-container {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 1.5rem 0;
-            font-size: 1.5rem;
-            background-color: transparent;
-            border: none;
-            border-bottom: 2px solid #111111;
-            outline: none;
-            font-family: inherit;
-            transition: border-color 0.3s ease;
-        }
-
-        .search-bar:focus {
-            border-color: #777777;
-        }
-
-        .clear-button {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #888888;
-            display: none;
-            transition: color 0.2s ease;
-        }
-
-        .clear-button:hover {
-            color: #111111;
-        }
-
-        .topic-track {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .topic-chip {
-            padding: 0.6rem 1.2rem;
-            border-radius: 100px;
-            border: 1px solid #E5E2DA;
-            background-color: #FFFFFF;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .topic-chip:hover {
-            transform: translateY(-2px);
-            border-color: #111111;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .topic-chip.active {
-            background-color: #111111;
-            color: #FFFFFF;
-            border-color: #111111;
-        }
-
-        /* Editorial Staggered Layout Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 3rem 2.5rem;
-        }
-
-        .card {
-            background-color: #FFFFFF;
-            border: 1px solid #EAE8E3;
-            border-radius: 8px;
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
-            border-color: #d1cdc4;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #999999;
-            margin-bottom: 2rem;
-        }
-
-        .card-title {
-            font-size: 1.65rem;
-            font-weight: 500;
-            margin-bottom: 0.6rem;
-            line-height: 1.25;
-            letter-spacing: -0.02em;
-        }
-
-        .card-author {
-            font-size: 1rem;
-            color: #666666;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        .card-description {
-            font-size: 1rem;
-            color: #444444;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-        }
-
-        .card-footer {
-            border-top: 1px solid #F2EFE9;
-            padding-top: 1.25rem;
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            color: #777777;
-        }
+        .container.visible { opacity: 1; transform: translateY(0); }
+        .header { border-bottom: 1px solid #111111; padding-bottom: 2.5rem; margin-bottom: 4rem; }
+        .header-top { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; margin-bottom: 1.5rem; color: #777777; text-transform: uppercase; }
+        .main-title { font-size: 4rem; font-weight: 400; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -0.04em; }
+        .subtitle { font-size: 1.15rem; color: #555555; max-width: 650px; font-weight: 400; }
+        .search-section { margin-bottom: 4rem; }
+        .input-container { position: relative; margin-bottom: 2rem; }
+        .search-bar { width: 100%; padding: 1.5rem 0; font-size: 1.5rem; background-color: transparent; border: none; border-bottom: 2px solid #111111; outline: none; font-family: inherit; transition: border-color 0.3s ease; }
+        .search-bar:focus { border-color: #777777; }
+        .clear-button { position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: #888888; display: none; }
+        .topic-track { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .topic-chip { padding: 0.6rem 1.2rem; border-radius: 100px; border: 1px solid #E5E2DA; background-color: #FFFFFF; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .topic-chip:hover { transform: translateY(-2px); border-color: #111111; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .topic-chip.active { background-color: #111111; color: #FFFFFF; border-color: #111111; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 3rem 2.5rem; }
+        .card { background-color: #FFFFFF; border: 1px solid #EAE8E3; border-radius: 8px; padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.04); border-color: #d1cdc4; }
+        .card-header { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #999999; margin-bottom: 2rem; }
+        .card-title { font-size: 1.65rem; font-weight: 500; margin-bottom: 0.6rem; line-height: 1.25; letter-spacing: -0.02em; }
+        .card-author { font-size: 1rem; color: #666666; margin-bottom: 2rem; font-style: italic; }
+        .card-description { font-size: 1rem; color: #444444; margin-bottom: 2.5rem; line-height: 1.6; }
+        .card-footer { border-top: 1px solid #F2EFE9; padding-top: 1.25rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; color: #777777; }
 
         @media (max-width: 768px) {
             .main-title { font-size: 2.8rem; }
             .grid { grid-template-columns: 1fr; }
             .container { padding: 4rem 1.5rem; }
+            .side-character { display: none; } /* Kept clean on smaller screens */
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. PREMIUM SPLASH OVERLAY -->
+    <!-- 1. AUTO-ANIMATED MULTI-PHASE LOADING PORTAL -->
     <div id="splashScreen">
-        <div class="loading-container">
+        <div class="loading-container" id="loadingContainer">
+            
+            <!-- PHASE 1: Sliders -->
             <div class="avatar-slider">
                 <div class="avatar-card">
                     <div class="avatar-img-box">
@@ -416,12 +361,48 @@
                 <div class="tracking-dot"></div>
             </div>
             
+            <!-- Ground Track Line Base -->
             <div class="progress-track-bg"></div>
-            <div class="brand-footer-text">‘OG’ <span>: Brand Name</span></div>
+
+            <!-- PHASE 2: CELEBRATION APP PRECIATION GROUP -->
+            <div class="celebration-group">
+                <div class="character-horizon">
+                    <!-- Left Character Lineup -->
+                    <div class="side-character char-left-1"><div class="mini-face"></div></div>
+                    <div class="side-character char-left-2"><div class="mini-face"></div></div>
+                    
+                    <!-- Centerpiece Character Frame with dynamic heart balloon notification -->
+                    <div class="center-frame-wrapper">
+                        <div class="heart-badge">&#9829; 10</div>
+                        <div class="avatar-card" style="animation: none;">
+                            <div class="avatar-img-box">
+                                <div class="char-hair"></div>
+                                <div class="char-face"><div class="char-glasses"></div></div>
+                                <div class="char-body"></div>
+                            </div>
+                            <div class="card-ui-elements">
+                                <span style="color:#EF5A6F;">&#9829; 27</span>
+                                <span>...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Character Lineup -->
+                    <div class="side-character char-right-1"><div class="mini-face" style="border-radius:4px 4px 50% 50%"></div></div>
+                    <div class="side-character char-right-2"><div class="mini-face"></div></div>
+                </div>
+
+                <!-- Text presentation layers mirroring your final layout screenshot -->
+                <div class="appreciated-text">Quality is always<br>Appreciated</div>
+                <div class="thankyou-text">Thankyou!</div>
+            </div>
+
+            <!-- Temporary Footer Title -->
+            <div class="brand-footer-text" id="brandText">‘OG’ <span>: Brand Name</span></div>
         </div>
     </div>
 
-    <!-- 2. SYSTEM APPLICATION ENTRY -->
+    <!-- 2. CORE DIGITAL LIBRARY -->
     <div class="container" id="mainContent">
         <header class="header">
             <div class="header-top">
@@ -453,11 +434,19 @@
     </div>
 
     <script>
-        // Smooth architectural curtain presentation
+        // Multi-phase state machine engine matching Adobe XD auto-animate rules
         window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('loadingContainer');
+            const splash = document.getElementById('splashScreen');
+            const content = document.getElementById('mainContent');
+
+            // Trigger Phase 2 Appreciation Frame at slider impact point
             setTimeout(() => {
-                const splash = document.getElementById('splashScreen');
-                const content = document.getElementById('mainContent');
+                if (container) container.classList.add('phase-two');
+            }, 3200);
+
+            // Elegantly dissolve curtain reveal to the operational workspace
+            setTimeout(() => {
                 if(splash && content) {
                     splash.style.opacity = '0';
                     setTimeout(() => {
@@ -465,7 +454,7 @@
                     }, 800);
                     content.classList.add('visible');
                 }
-            }, 3600); // Fluid extension to match luxury motion timeline
+            }, 6400); // Leaves ample runtime to enjoy the gorgeous thank you interface
         });
 
         const DESIGN_BOOKS = [
@@ -499,7 +488,6 @@
             filtered.forEach((book, index) => {
                 const card = document.createElement('article');
                 card.className = 'card';
-                // Add soft staggered presentation timings
                 card.style.animation = `cardScalePremium 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) ${index * 0.05}s both`;
                 card.innerHTML = `
                     <div>
