@@ -56,17 +56,19 @@
             position: relative;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 1px 0px rgba(255,255,255,0.8);
             margin-bottom: 2.5rem; 
+            z-index: 1; /* Keeping track at baseline layer */
         }
 
-        /* Shifted upwards significantly to create a distinct floating hover space above the black bar */
+        /* Lifted visually and stacked explicitly on top via z-index */
         .avatar-slider {
             position: absolute;
-            bottom: 200px; /* Increased to generate an elegant suspended float over the black track */
+            bottom: 200px; 
             left: 0%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
+            z-index: 10; /* Forces avatar wrapper securely in front of everything else in the container */
             animation: moveAvatarPremium 2.5s cubic-bezier(0.76, 0, 0.24, 1) forwards;
         }
 
@@ -79,7 +81,7 @@
             -webkit-backdrop-filter: blur(16px) saturate(120%);
             border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 12px;
-            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.15); /* Deepened shadow projection to augment the floating effect */
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.15); 
             padding: 7px;
             display: flex;
             flex-direction: column;
@@ -200,7 +202,7 @@
             transform: scale(1.05);
             margin: 0 40px;
             position: relative;
-            bottom: 45px; /* Clear elevated floating position above the footer horizon line */
+            bottom: 45px; 
         }
 
         .heart-bubble-notification {
