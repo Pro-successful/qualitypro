@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Literature Index</title>
+    <style>
+        /* Modern CSS reset and foundational configuration */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #111111;
+            background-color: #FAF9F6;
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* --- XD AUTO-ANIMATE SPLASH SCREEN STYLES --- */
+        #splashScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s;
+        }
+
+        .loading-container {
+            position: relative;
+            width: 500px; /* Width matching the track scale */
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* The background empty track line */
+        .progress-track-bg {
+            width: 100%;
+            height: 12px;
+            background-color: #EAE8E3;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* The filling track line mirroring your second screenshot */
+        .progress-track-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #333333;
+            border-radius: 6px;
+            animation: fillTrack 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Animated Avatar Wrapper sliding across the track axis */
+        .avatar-slider {
+            position: absolute;
+            bottom: 6px; /* Offset to float right over the track line */
+            left: 0%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: moveAvatar 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* The Card Graphic holding the character profile illustration */
+        .avatar-card {
+            width: 80px;
+            height: 90px;
+            background-color: #FFFFFF;
+            border: 1px solid #EAE8E3;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 4px;
+        }
+
+        /* Simplified pure CSS representation of your character profile */
+        .avatar-img-box {
+            width: 100%;
+            height: 64px;
+            background-color: #FFF0EB;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        
+        .char-hair {
+            position: absolute;
+            top: 12px;
+            width: 42px;
+            height: 42px;
+            background-color: #653A2A;
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .char-face {
+            width: 32px;
+            height: 36px;
+            background-color: #FFD1C1;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .char-glasses {
+            width: 26px;
+            height: 12px;
+            border: 2px solid #E5A93C;
+            border-top: none;
+            position: absolute;
+            top: 12px;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .char-body {
+            width: 36px;
+            height: 16px;
+            background-color: #9CDCE4;
+            border-radius: 12px 12px 0 0;
+            z-index: 1;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .card-ui-elements {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            color: #E25C5C;
+            padding: 0 2px;
+        }
+
+        /* The tracking node dot pinning the card down to the axis line */
+        .tracking-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #111111;
+            border-radius: 50%;
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* KEYFRAME SPECIFICATIONS MATCHING ADOBE XD AUTO-ANIMATE */
+        @keyframes fillTrack {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes moveAvatar {
+            0% { left: 0%; }
+            100% { left: 100%; }
+        }
+
+        /* --- MAIN DASHBOARD INTERFACE LAYOUT --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .header {
+            border-bottom: 1px solid #111111;
+            padding-bottom: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            color: #666666;
+            text-transform: uppercase;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #555555;
+            max-width: 600px;
+        }
+
+        .search-section {
+            margin-bottom: 3rem;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1.25rem 0;
+            font-size: 1.25rem;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid #111111;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .clear-button {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #888888;
+            display: none;
+        }
+
+        .topic-track {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .topic-chip {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #DDDDDD;
+            background-color: #FFFFFF;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .topic-chip.active {
+            background-color: #111111;
+            color: #FFFFFF;
+            border-color: #111111;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem 2rem;
+        }
+
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #EAE8E3;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #888888;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .card-author {
+            font-size: 0.95rem;
+            color: #666666;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: #333333;
+            margin-bottom: 2rem;
+        }
+
+        .card-footer {
+            border-top: 1px solid #F0EDE8;
+            padding-top: 1rem;
+            font-size: 0.8rem;
+            color: #888888;
+        }
+
+        @media (max-width: 768px) {
+            .loading-container { width: 85%; }
+            .main-title { font-size: 2.5rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. AUTOMATED LOADING SCREEN INSTANCE -->
+    <div id="splashScreen">
+        <div class="loading-container">
+            <!-- Gliding Profile Wrapper -->
+            <div class="avatar-slider">
+                <div class="avatar-card">
+                    <div class="avatar-img-box">
+                        <div class="char-hair"></div>
+                        <div class="char-face"><div class="char-glasses"></div></div>
+                        <div class="char-body"></div>
+                    </div>
+                    <div class="card-ui-elements">
+                        <span>♥ 27</span>
+                        <span>...</span>
+                    </div>
+                </div>
+                <div class="tracking-dot"></div>
+            </div>
+            <!-- Ground Track Frame lines -->
+            <div class="progress-track-bg">
+                <div class="progress-track-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MAIN CORE APPLICATION LAYOUT -->
+    <div class="container" id="mainContent">
+        <header class="header">
+            <div class="header-top">
+                <span>Bibliothèque des Design</span>
+                <span>Edition 2026</span>
+            </div>
+            <h1 class="main-title">Design Literature Index</h1>
+            <p class="subtitle">A curated catalog of foundational literature across spatial, material, and visual design practices.</p>
+        </header>
+
+        <section class="search-section">
+            <div class="input-container">
+                <input type="text" id="searchBar" placeholder="Search index by title, creator, or abstract keywords..." class="search-bar">
+                <button id="clearBtn" class="clear-button">Clear</button>
+            </div>
+            <div class="topic-track" id="topicTrack">
+                <button class="topic-chip active" data-topic="All Topics">All Topics</button>
+                <button class="topic-chip" data-topic="Typography">Typography</button>
+                <button class="topic-chip" data-topic="Color Theory">Color Theory</button>
+                <button class="topic-chip" data-topic="Industrial Design">Industrial Design</button>
+                <button class="topic-chip" data-topic="Digital Design">Digital Design</button>
+                <button class="topic-chip" data-topic="Architecture">Architecture</button>
+            </div>
+        </section>
+
+        <main class="results-section">
+            <div class="grid" id="booksGrid"></div>
+        </main>
+    </div>
+
+    <script>
+        // Runtime Orchestration: Transitions splash screen away when keyframes terminate
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splashScreen');
+                const content = document.getElementById('mainContent');
+                
+                splash.style.opacity = '0';
+                splash.style.visibility = 'hidden';
+                content.classList.add('visible');
+            }, 3200); // Gives the 3-second animation room to settle cleanly
+        });
+
+        // Curated Library Books Dataset
+        const DESIGN_BOOKS = [
+            { id: "1", title: "The Elements of Typographic Style", author: "Robert Bringhurst", topic: "Typography", year: "1992", publisher: "Hartley & Marks", description: "The definitive guide to typographic syntax and geometry, combining practical clarity with historical philosophy." },
+            { id: "2", title: "Interaction of Color", author: "Josef Albers", topic: "Color Theory", year: "1963", publisher: "Yale University Press", description: "An essential handbook demonstrating the relativity and instability of color perception through experiential exercises." },
+            { id: "3", title: "Less and More: The Design Ethos of Dieter Rams", author: "Klaus Klemp & Uta Brandes", topic: "Industrial Design", year: "2015", publisher: "Gestalten", description: "An elegant visual analysis of functionalism, examining the core ten principles that defined modern consumer product design." },
+            { id: "4", title: "Design Systems", author: "Alla Kholmatova", topic: "Digital Design", year: "2017", publisher: "Smashing Magazine", description: "A functional guide to creating structured, scalable digital products using cohesive pattern libraries and shared brand values." },
+            { id: "5", title: "Grid Systems in Graphic Design", author: "Josef Müller-Brockmann", topic: "Typography", year: "1981", publisher: "Niggli", description: "The foundational text on structural layout grids, establishing objective, mathematical visual organization in modern communication design." },
+            { id: "6", title: "Complexity and Contradiction in Architecture", author: "Robert Venturi", topic: "Architecture", year: "1966", publisher: "Museum of Modern Art", description: "A seminal manifesto challenging modern minimalist orthodoxy, advocating for ambiguity, historical reference, and visual richness." }
+        ];
+
+        let selectedTopic = "All Topics";
+        let searchQuery = "";
+
+        const searchBar = document.getElementById('searchBar');
+        const clearBtn = document.getElementById('clearBtn');
+        const topicTrack = document.getElementById('topicTrack');
+        const booksGrid = document.getElementById('booksGrid');
+
+        function renderBooks() {
+            const filtered = DESIGN_BOOKS.filter(book => {
+                const matchesTopic = selectedTopic === "All Topics" || book.topic === selectedTopic;
+                const matchesSearch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      book.description.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesTopic && matchesSearch;
+            });
+
+            booksGrid.innerHTML = "";
+            filtered.forEach(book => {
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div>
+                        <div class="card-header"><span>${book.topic}</span><span>${book.year}</span></div>
+                        <h2 class="card-title">${book.title}</h2>
+                        <p class="card-author">By ${book.author}</p>
+                        <p class="card-description">${book.description}</p>
+                    </div>
+                    <div class="card-footer"><span>${book.publisher}</span></div>
+                `;
+                booksGrid.appendChild(card);
+            });
+        }
+
+        searchBar.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            clearBtn.style.display = searchQuery ? "block" : "none";
+            renderBooks();
+        });
+
+        clearBtn.addEventListener('click', () => {
+            searchBar.value = "";
+            searchQuery = "";
+            clearBtn.style.display = "none";
+            renderBooks();
+        });
+
+        topicTrack.addEventListener('click', (e) => {
+            const chip = e.target.closest('.topic-chip');
+            if (!chip) return;
+            document.querySelectorAll('.topic-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            selectedTopic = chip.getAttribute('data-topic');
+            renderBooks();
+        });
+
+        renderBooks();
+    </script>
+</body>
+</html>
