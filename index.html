@@ -41,7 +41,7 @@
             position: relative;
             width: 85%;
             max-width: 550px;
-            height: 380px; /* Expanded vertically to effortlessly house the doubled elevation heights */
+            height: 380px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -58,10 +58,10 @@
             margin-bottom: 2.5rem; 
         }
 
-        /* Position tracking matrix with doubled baseline altitude */
+        /* Shifted upwards significantly to create a distinct floating hover space above the black bar */
         .avatar-slider {
             position: absolute;
-            bottom: 147px; /* Doubled elevation balance keeping the absolute touch interaction flushed against the track top */
+            bottom: 200px; /* Increased to generate an elegant suspended float over the black track */
             left: 0%;
             transform: translateX(-50%);
             display: flex;
@@ -79,13 +79,12 @@
             -webkit-backdrop-filter: blur(16px) saturate(120%);
             border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 12px;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08); /* Enhanced soft shadow spread depth */
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.15); /* Deepened shadow projection to augment the floating effect */
             padding: 7px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            margin-bottom: 0px; /* Strictly locked flush to preserve the tactile contact logic */
             transform-origin: bottom center;
             animation: cardScalePremium 2.5s cubic-bezier(0.76, 0, 0.24, 1) forwards;
         }
@@ -108,7 +107,6 @@
         .char-body { width: 38px; height: 18px; background-color: #9CDCE4; border-radius: 14px 12px 0 0; z-index: 1; position: absolute; bottom: 0; }
         .card-ui-elements { display: flex; justify-content: space-between; align-items: center; font-size: 8px; font-weight: 600; color: #E25C5C; padding: 0 3px; }
         
-        /* Guide dot layout specs */
         .tracking-dot { display: none; }
 
         .brand-footer-text {
@@ -202,7 +200,7 @@
             transform: scale(1.05);
             margin: 0 40px;
             position: relative;
-            bottom: 5px;
+            bottom: 45px; /* Clear elevated floating position above the footer horizon line */
         }
 
         .heart-bubble-notification {
