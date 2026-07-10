@@ -22,83 +22,80 @@
             overflow-x: hidden;
         }
 
-        /* --- XD AUTO-ANIMATE SPLASH SCREEN STYLES --- */
+        /* --- INTERNATIONAL LEVEL SPLASH SCREEN --- */
         #splashScreen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #FFFFFF;
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f4f3f0 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s;
+            transition: opacity 0.8s cubic-bezier(0.85, 0, 0.15, 1), visibility 0.8s;
         }
 
         .loading-container {
             position: relative;
-            width: 500px; /* Width matching the track scale */
-            height: 150px;
+            width: 85%;
+            max-width: 550px;
+            height: 220px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* The background empty track line */
+        /* Premium grounded track line with depth */
         .progress-track-bg {
             width: 100%;
-            height: 12px;
-            background-color: #EAE8E3;
-            border-radius: 6px;
+            height: 14px;
+            background-color: #1e1e1e;
+            border-radius: 100px;
             position: relative;
-            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 1px 0px rgba(255,255,255,0.8);
         }
 
-        /* The filling track line mirroring your second screenshot */
-        .progress-track-fill {
-            width: 0%;
-            height: 100%;
-            background-color: #333333;
-            border-radius: 6px;
-            animation: fillTrack 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        /* Animated Avatar Wrapper sliding across the track axis */
+        /* Animated Avatar Wrapper with custom organic fluid inertia curves */
         .avatar-slider {
             position: absolute;
-            bottom: 6px; /* Offset to float right over the track line */
+            bottom: 7px;
             left: 0%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: moveAvatar 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation: moveAvatarPremium 3.4s cubic-bezier(0.76, 0, 0.24, 1) forwards;
         }
 
-        /* The Card Graphic holding the character profile illustration */
+        /* Studio-quality Glassmorphism Card Element */
         .avatar-card {
-            width: 80px;
-            height: 90px;
-            background-color: #FFFFFF;
-            border: 1px solid #EAE8E3;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            padding: 6px;
+            width: 85px;
+            height: 96px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px) saturate(120%);
+            -webkit-backdrop-filter: blur(16px) saturate(120%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0,0,0,0.02);
+            padding: 7px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            margin-bottom: 4px;
+            margin-bottom: -2px;
+            transform-origin: bottom center;
+            animation: cardScalePremium 3.4s cubic-bezier(0.76, 0, 0.24, 1) forwards;
         }
 
-        /* Simplified pure CSS representation of your character profile */
+        /* Character Profile Vector Engine */
         .avatar-img-box {
             width: 100%;
-            height: 64px;
-            background-color: #FFF0EB;
-            border-radius: 2px;
+            height: 68px;
+            background: linear-gradient(135deg, #fff2ed 0%, #ffe5dc 100%);
+            border-radius: 8px;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -108,16 +105,16 @@
         
         .char-hair {
             position: absolute;
-            top: 12px;
-            width: 42px;
-            height: 42px;
+            top: 14px;
+            width: 44px;
+            height: 44px;
             background-color: #653A2A;
             border-radius: 50% 50% 0 0;
         }
         
         .char-face {
-            width: 32px;
-            height: 36px;
+            width: 34px;
+            height: 38px;
             background-color: #FFD1C1;
             border-radius: 50%;
             position: relative;
@@ -129,8 +126,8 @@
         }
 
         .char-glasses {
-            width: 26px;
-            height: 12px;
+            width: 28px;
+            height: 14px;
             border: 2px solid #E5A93C;
             border-top: none;
             position: absolute;
@@ -139,10 +136,10 @@
         }
 
         .char-body {
-            width: 36px;
-            height: 16px;
+            width: 38px;
+            height: 18px;
             background-color: #9CDCE4;
-            border-radius: 12px 12px 0 0;
+            border-radius: 14px 12px 0 0;
             z-index: 1;
             position: absolute;
             bottom: 0;
@@ -153,39 +150,66 @@
             justify-content: space-between;
             align-items: center;
             font-size: 8px;
+            font-weight: 600;
             color: #E25C5C;
-            padding: 0 2px;
+            padding: 0 3px;
         }
 
-        /* The tracking node dot pinning the card down to the axis line */
+        /* Liquid Anchor Node Slider Base */
         .tracking-dot {
-            width: 12px;
-            height: 12px;
-            background-color: #111111;
+            width: 26px;
+            height: 26px;
+            background-color: #A9DFE4;
             border-radius: 50%;
-            border: 2px solid #FFFFFF;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 3px solid #FFFFFF;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: -1;
         }
 
-        /* KEYFRAME SPECIFICATIONS MATCHING ADOBE XD AUTO-ANIMATE */
-        @keyframes fillTrack {
-            0% { width: 0%; }
-            100% { width: 100%; }
+        /* High-fashion Serif Brand Alignment */
+        .brand-footer-text {
+            margin-top: 2rem;
+            font-family: "Didot", "Bodoni MT", "Cinzel", Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #111111;
+            letter-spacing: 0.08em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        .brand-footer-text span {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #777777;
+            margin-left: 0.6rem;
+            letter-spacing: 0.15em;
+            vertical-align: middle;
         }
 
-        @keyframes moveAvatar {
-            0% { left: 0%; }
-            100% { left: 100%; }
+        /* PREMIUM LUXURY EASING TIMELINES */
+        @keyframes moveAvatarPremium {
+            0% { left: 12%; }
+            50% { left: 78%; }
+            100% { left: 82%; }
         }
 
-        /* --- MAIN DASHBOARD INTERFACE LAYOUT --- */
+        @keyframes cardScalePremium {
+            0% { transform: scale(0.6) rotate(-5deg); }
+            50% { transform: scale(1.15) rotate(3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* --- DASHBOARD PORTAL --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.215, 0.610, 0.355, 1), transform 1.2s cubic-bezier(0.215, 0.610, 0.355, 1);
         }
 
         .container.visible {
@@ -195,7 +219,7 @@
 
         .header {
             border-bottom: 1px solid #111111;
-            padding-bottom: 2rem;
+            padding-bottom: 2.5rem;
             margin-bottom: 4rem;
         }
 
@@ -204,44 +228,50 @@
             justify-content: space-between;
             font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             margin-bottom: 1.5rem;
-            color: #666666;
+            color: #777777;
             text-transform: uppercase;
         }
 
         .main-title {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #555555;
-            max-width: 600px;
+            max-width: 650px;
+            font-weight: 400;
         }
 
         .search-section {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .input-container {
             position: relative;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .search-bar {
             width: 100%;
-            padding: 1.25rem 0;
-            font-size: 1.25rem;
+            padding: 1.5rem 0;
+            font-size: 1.5rem;
             background-color: transparent;
             border: none;
             border-bottom: 2px solid #111111;
             outline: none;
             font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-bar:focus {
+            border-color: #777777;
         }
 
         .clear-button {
@@ -252,10 +282,16 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
+            letter-spacing: 0.1em;
             color: #888888;
             display: none;
+            transition: color 0.2s ease;
+        }
+
+        .clear-button:hover {
+            color: #111111;
         }
 
         .topic-track {
@@ -265,13 +301,20 @@
         }
 
         .topic-chip {
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            border: 1px solid #DDDDDD;
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            border: 1px solid #E5E2DA;
             background-color: #FFFFFF;
             cursor: pointer;
             font-size: 0.85rem;
-            transition: all 0.2s ease;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .topic-chip:hover {
+            transform: translateY(-2px);
+            border-color: #111111;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .topic-chip.active {
@@ -280,71 +323,84 @@
             border-color: #111111;
         }
 
+        /* Editorial Staggered Layout Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2.5rem 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 3rem 2.5rem;
         }
 
         .card {
             background-color: #FFFFFF;
             border: 1px solid #EAE8E3;
-            padding: 2rem;
+            border-radius: 8px;
+            padding: 2.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            border-color: #d1cdc4;
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            color: #888888;
-            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            color: #999999;
+            margin-bottom: 2rem;
         }
 
         .card-title {
-            font-size: 1.5rem;
+            font-size: 1.65rem;
             font-weight: 500;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
+            margin-bottom: 0.6rem;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
         }
 
         .card-author {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #666666;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             font-style: italic;
         }
 
         .card-description {
-            font-size: 0.95rem;
-            color: #333333;
-            margin-bottom: 2rem;
+            font-size: 1rem;
+            color: #444444;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
         }
 
         .card-footer {
-            border-top: 1px solid #F0EDE8;
-            padding-top: 1rem;
+            border-top: 1px solid #F2EFE9;
+            padding-top: 1.25rem;
             font-size: 0.8rem;
-            color: #888888;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: #777777;
         }
 
         @media (max-width: 768px) {
-            .loading-container { width: 85%; }
-            .main-title { font-size: 2.5rem; }
+            .main-title { font-size: 2.8rem; }
             .grid { grid-template-columns: 1fr; }
+            .container { padding: 4rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. AUTOMATED LOADING SCREEN INSTANCE -->
+    <!-- 1. PREMIUM SPLASH OVERLAY -->
     <div id="splashScreen">
         <div class="loading-container">
-            <!-- Gliding Profile Wrapper -->
             <div class="avatar-slider">
                 <div class="avatar-card">
                     <div class="avatar-img-box">
@@ -353,20 +409,19 @@
                         <div class="char-body"></div>
                     </div>
                     <div class="card-ui-elements">
-                        <span>♥ 27</span>
+                        <span>&#9829; 27</span>
                         <span>...</span>
                     </div>
                 </div>
                 <div class="tracking-dot"></div>
             </div>
-            <!-- Ground Track Frame lines -->
-            <div class="progress-track-bg">
-                <div class="progress-track-fill"></div>
-            </div>
+            
+            <div class="progress-track-bg"></div>
+            <div class="brand-footer-text">‘OG’ <span>: Brand Name</span></div>
         </div>
     </div>
 
-    <!-- 2. MAIN CORE APPLICATION LAYOUT -->
+    <!-- 2. SYSTEM APPLICATION ENTRY -->
     <div class="container" id="mainContent">
         <header class="header">
             <div class="header-top">
@@ -398,19 +453,21 @@
     </div>
 
     <script>
-        // Runtime Orchestration: Transitions splash screen away when keyframes terminate
+        // Smooth architectural curtain presentation
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splashScreen');
                 const content = document.getElementById('mainContent');
-                
-                splash.style.opacity = '0';
-                splash.style.visibility = 'hidden';
-                content.classList.add('visible');
-            }, 3200); // Gives the 3-second animation room to settle cleanly
+                if(splash && content) {
+                    splash.style.opacity = '0';
+                    setTimeout(() => {
+                        splash.style.display = 'none';
+                    }, 800);
+                    content.classList.add('visible');
+                }
+            }, 3600); // Fluid extension to match luxury motion timeline
         });
 
-        // Curated Library Books Dataset
         const DESIGN_BOOKS = [
             { id: "1", title: "The Elements of Typographic Style", author: "Robert Bringhurst", topic: "Typography", year: "1992", publisher: "Hartley & Marks", description: "The definitive guide to typographic syntax and geometry, combining practical clarity with historical philosophy." },
             { id: "2", title: "Interaction of Color", author: "Josef Albers", topic: "Color Theory", year: "1963", publisher: "Yale University Press", description: "An essential handbook demonstrating the relativity and instability of color perception through experiential exercises." },
@@ -429,6 +486,7 @@
         const booksGrid = document.getElementById('booksGrid');
 
         function renderBooks() {
+            if(!booksGrid) return;
             const filtered = DESIGN_BOOKS.filter(book => {
                 const matchesTopic = selectedTopic === "All Topics" || book.topic === selectedTopic;
                 const matchesSearch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -438,9 +496,11 @@
             });
 
             booksGrid.innerHTML = "";
-            filtered.forEach(book => {
+            filtered.forEach((book, index) => {
                 const card = document.createElement('article');
                 card.className = 'card';
+                // Add soft staggered presentation timings
+                card.style.animation = `cardScalePremium 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) ${index * 0.05}s both`;
                 card.innerHTML = `
                     <div>
                         <div class="card-header"><span>${book.topic}</span><span>${book.year}</span></div>
@@ -454,27 +514,33 @@
             });
         }
 
-        searchBar.addEventListener('input', (e) => {
-            searchQuery = e.target.value;
-            clearBtn.style.display = searchQuery ? "block" : "none";
-            renderBooks();
-        });
+        if(searchBar) {
+            searchBar.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                if(clearBtn) clearBtn.style.display = searchQuery ? "block" : "none";
+                renderBooks();
+            });
+        }
 
-        clearBtn.addEventListener('click', () => {
-            searchBar.value = "";
-            searchQuery = "";
-            clearBtn.style.display = "none";
-            renderBooks();
-        });
+        if(clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                if(searchBar) searchBar.value = "";
+                searchQuery = "";
+                clearBtn.style.display = "none";
+                renderBooks();
+            });
+        }
 
-        topicTrack.addEventListener('click', (e) => {
-            const chip = e.target.closest('.topic-chip');
-            if (!chip) return;
-            document.querySelectorAll('.topic-chip').forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-            selectedTopic = chip.getAttribute('data-topic');
-            renderBooks();
-        });
+        if(topicTrack) {
+            topicTrack.addEventListener('click', (e) => {
+                const chip = e.target.closest('.topic-chip');
+                if (!chip) return;
+                document.querySelectorAll('.topic-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                selectedTopic = chip.getAttribute('data-topic');
+                renderBooks();
+            });
+        }
 
         renderBooks();
     </script>
